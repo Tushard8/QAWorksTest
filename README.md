@@ -14,7 +14,7 @@ Instructions to run and build code:
 2. Open "AppAutomation" project with IntelliJ IDE. You can use other IDE like eclipse as well. I have developed this in
 IntelliJ using Maven project.
 3. To run the project you can use either of below options:
-    - Run it through terminal using command--> mvn clean install
+    - Run it through IntelliJ terminal using command--> mvn clean install
     - Run it through RunnerTest utility
     - Run it through ContactUs.feature by right click on Scenario and using Run scenario option
     - Run it through Intellij->Maven Project->Lifecycle->install
