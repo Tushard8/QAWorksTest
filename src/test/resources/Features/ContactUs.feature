@@ -17,4 +17,4 @@ Feature: ContactUs.feature
   Scenario: Submit ContactUs form without details and check if any Error Message displayed
     Given I am on ContactUs Page
     When  I submit empty ContactUs Page
-    Then  Error Message is displayed on COntactUs Page
+    Then  Error Message is displayed on ContactUs Page

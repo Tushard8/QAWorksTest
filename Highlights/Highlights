@@ -1,0 +1,7 @@
+Highlights:
+
+1 In addition to Data table I have used a scenario where I have fetched data from property file
+
+2 We can also use Scenario outline which gives an option to run the step for multiple values. This is achieved
+by using placeholders in steps and defining an example for those steps at the of scenario
+

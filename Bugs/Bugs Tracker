@@ -1,0 +1,8 @@
+Below couple of bugs observed on ContctUs page
+
+1. Invalid entry (e.g. in email field if we enter invalid string which is not email) & hit submit button throws an exception.
+   It should have been handled by been handled by meaningful error message not the exception.
+
+2. Successful submission doesn't give any success message to the user, rather it just clear the field value.
+   It should show the message to acknowledge successful submission.
+

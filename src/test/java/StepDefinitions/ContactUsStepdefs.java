@@ -25,10 +25,7 @@ public class ContactUsStepdefs extends BaseStepDef {
         baseScenario = scenario;
         setDriver();
         initalize(localDriver);
-
-
     }
-
 
     @Given("^I am on QAWorks Site$")
     public void iAmOnQAWorksSite() throws Throwable {

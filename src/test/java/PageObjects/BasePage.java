@@ -1,6 +1,5 @@
 package PageObjects;
 
-
 import SeleniumWrapper.SeleniumLib;
 import Utility.Common;
 import org.junit.Test;
@@ -8,14 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class BasePage extends Common {
 
     WebDriver driver;
-    //PropertyReader  pageElementInstance=  PropertyReader.getPageElementInstance();
-    //PropertyReader  testConfigInstance= PropertyReader.getTestConfigInstance();
     public static SeleniumLib seleniumLib;
-
 
     public BasePage(WebDriver driver) {
         //LOGGER.log_def_track("Started Base Page Constructor");
@@ -32,8 +27,6 @@ public class BasePage extends Common {
 
     public void clickURL(String URL) {
         seleniumLib.openURL(URL);
-
-
     }
 
     public void openTestSite() {
@@ -42,6 +35,7 @@ public class BasePage extends Common {
     }
 
     public void displayProperty() {
+
         String str = pageElements.readProperty("somepage.somevariable");
         seleniumLib.getElement(str);
 
