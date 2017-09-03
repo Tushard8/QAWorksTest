@@ -9,44 +9,22 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        pageDriver=driver;
+        pageDriver = driver;
 
     }
+
     public WebDriver pageDriver;
 
-    String services =pageElements.readProperty("HomePage.Services");
-    String contactUs =pageElements.readProperty("HomePage.ContactUs");
-
-
-
-
-
-
-
-    public void submitComment(String text) {
-        //seleniumLib.getElement(commentsTextAreaInput).sendKeys(text);
-        //seleniumLib.getElement(submitButton).click();
-
-        //seleniumLib.waitForTextPresentInElement(seleniumLib.getElement(yourCommentsSpan),text);
-
-        // Race condition for time to populate yourCommentsSpan
-       // WebDriverWait wait = new WebDriverWait(this.driver, 15);
-       // wait.until(ExpectedConditions.textToBePresentInElement(yourCommentsSpan, text));
-    }
-
-   // public String getSubmittedCommentText() {
-       // return this.yourCommentsSpan.getText();
- //   }
-
-
+    String services = pageElements.readProperty("HomePage.Services");
+    String contactUs = pageElements.readProperty("HomePage.ContactUs");
 
     public boolean isCommentDisplayed() {
-    //return seleniumLib.isTextContainedInElement(seleniumLib.getElement(yourCommentsSpan),pageElements.readProperty("RANDOM_TEXT"));
+        //return seleniumLib.isTextContainedInElement(seleniumLib.getElement(yourCommentsSpan),pageElements.readProperty("RANDOM_TEXT"));
         return true;
     }
 
     public boolean isPageLoaded() {
-        return seleniumLib.waitForElementVisible(seleniumLib.getElement(services))&&
+        return seleniumLib.waitForElementVisible(seleniumLib.getElement(services)) &&
                 seleniumLib.waitForElementVisible(seleniumLib.getElement(contactUs));
 
     }

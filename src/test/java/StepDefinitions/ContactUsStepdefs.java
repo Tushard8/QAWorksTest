@@ -15,15 +15,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 
-public class ContactUsStepdefs extends BaseStepDef
-    {
+public class ContactUsStepdefs extends BaseStepDef {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(ContactUsPage.class);
 
     @Before
     public void setUp(Scenario scenario) throws Exception {
 
-        baseScenario=scenario;
+        baseScenario = scenario;
         setDriver();
         initalize(localDriver);
 

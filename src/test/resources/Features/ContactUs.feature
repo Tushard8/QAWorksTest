@@ -1,26 +1,20 @@
 Feature: ContactUs.feature
 
   @one
-  Scenario: Contact Us1
+  Scenario: Submit ContactUs form with your details to know more about QAWorks Services offerings
     Given I am on QAWorks Site
     Then I should be able to contact QA Works with the following information
-    |name|J.Bloggs|
-    |email|J.Bloggs@Qaworks.com|
-    |message|Please contact me I want to find out more|
+      | name    | J.Bloggs                                  |
+      | email   | J.Bloggs@Qaworks.com                      |
+      | message | Please contact me I want to find out more |
 
-
-  #Scenario: some scenario
-    #Given I am on 4th Page #Context
-    #When I am on 4th Page  #Action
-    #Then I am on 4th Page  #Verification\Final Check
-
-  Scenario: Picking Test Data from Propert File
+  Scenario: Picking Test Data from Property File
     Given I am on ContactUs Page
     When I submit ContactUs Page
     Then Summary Pagge is displayed
 
 
-  Scenario: Error Message id displayed
+  Scenario: Submit ContactUs form without details and check if any Error Message displayed
     Given I am on ContactUs Page
-    When I submit empty ContactUs Page
-    Then Error Message is displayed on COntactUs Page
+    When  I submit empty ContactUs Page
+    Then  Error Message is displayed on COntactUs Page

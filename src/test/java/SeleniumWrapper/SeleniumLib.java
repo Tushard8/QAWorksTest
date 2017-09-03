@@ -13,17 +13,21 @@ import java.util.List;
 
 public class SeleniumLib {
     WebDriver driver;
-    WebDriverWait wait15sec ;
+    WebDriverWait wait15sec;
     WebElement element;
     List<WebElement> elementList;
-    private String timeoutErrorMessage (WebElement element) {
-        return " Central Library :unable to find element" +element ;
+
+    private String timeoutErrorMessage(WebElement element) {
+        return " Central Library :unable to find element" + element;
     }
+
     public static final Logger LOGGER = LoggerFactory.getLogger(SeleniumLib.class);
 
 
-    public SeleniumLib(WebDriver driver) { this.driver = driver;
+    public SeleniumLib(WebDriver driver) {
+        this.driver = driver;
     }
+
     public boolean waitForJSandJQueryToLoad() {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -33,9 +37,8 @@ public class SeleniumLib {
             @Override
             public Boolean apply(WebDriver driver) {
                 try {
-                    return ((Long)((JavascriptExecutor)driver).executeScript("return jQuery.active") == 0);
-                }
-                catch (Exception e) {
+                    return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+                } catch (Exception e) {
                     // no jQuery present
                     return true;
                 }
@@ -46,16 +49,17 @@ public class SeleniumLib {
         ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor)driver).executeScript("return document.readyState")
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState")
                         .toString().equals("complete");
             }
         };
 
         return wait.until(jQueryLoad) && wait.until(jsLoad);
     }
-    public boolean waitForElementVisible(WebElement element)  {
-        try{
-            wait15sec= new WebDriverWait(driver,15);
+
+    public boolean waitForElementVisible(WebElement element) {
+        try {
+            wait15sec = new WebDriverWait(driver, 15);
             wait15sec.until(ExpectedConditions.visibilityOf(element));
             return true;
         } catch (Exception t) {
@@ -63,10 +67,10 @@ public class SeleniumLib {
         }
     }
 
-    public void waitForTextPresentInElement(WebElement element, String str)  {
-        try{
-            wait15sec= new WebDriverWait(driver,15);
-            wait15sec.until(ExpectedConditions.textToBePresentInElement(element,str));
+    public void waitForTextPresentInElement(WebElement element, String str) {
+        try {
+            wait15sec = new WebDriverWait(driver, 15);
+            wait15sec.until(ExpectedConditions.textToBePresentInElement(element, str));
         } catch (Exception t) {
             //log.log_library_error("Exception caught- Text not present after waiting 15 sec in Element"+ element + "" , t);
         }
@@ -81,9 +85,8 @@ public class SeleniumLib {
         }
     }
 
-
-    public void clickOnElement(WebElement element)  {
-        try{
+    public void clickOnElement(WebElement element) {
+        try {
             waitForElementVisible(element);
             element.click();
             //log.log_library_track("Clicked on Element: " +element);
@@ -93,18 +96,19 @@ public class SeleniumLib {
             throw e;
         }
     }
-    public void openURL(String URL)  {
-        try{
+
+    public void openURL(String URL) {
+        try {
             driver.get(URL);
             //log.log_library_track("URL Clicked: " +URL);
-           } catch (Exception e) {
+        } catch (Exception e) {
             //log.log_library_error("unable to open URL : "+ URL , e);
             throw e;
         }
     }
 
-    public void verifyPage(WebElement element)  {
-        try{
+    public void verifyPage(WebElement element) {
+        try {
             waitForElementVisible(element);
             //log.log_library_track("Element Verification done on Page for Element: "+element);
         } catch (Exception e) {
@@ -113,8 +117,8 @@ public class SeleniumLib {
         }
     }
 
-    public void enterText(WebElement element, String str)  {
-        try{
+    public void enterText(WebElement element, String str) {
+        try {
             waitForElementVisible(element);
             element.sendKeys(str);
             //log.log_library_track("Text entered in the Element: "+element);
@@ -124,11 +128,11 @@ public class SeleniumLib {
         }
     }
 
-    public WebElement getElement(String str)  {
-        String strLocatorType= (str.split(":",2)[0]).toLowerCase();
-        String strLocatorValue= (str.split(":",2)[1]);
+    public WebElement getElement(String str) {
+        String strLocatorType = (str.split(":", 2)[0]).toLowerCase();
+        String strLocatorValue = (str.split(":", 2)[1]);
 
-        switch(strLocatorType) {
+        switch (strLocatorType) {
 
             case "id":
                 element = driver.findElement(By.id(strLocatorValue));
@@ -151,21 +155,22 @@ public class SeleniumLib {
             case "xpath":
                 element = driver.findElement(By.xpath(strLocatorValue));
                 break;
-            default :
-                       //unable to open URL
-                        //log.log_library_error("unable to identify element using LocatorType \"" + strLocatorType+ "\" and Locator Value \"" +strLocatorValue+"\"");
-                        //LOGGER.error("unable to identify element using LocatorType " + strLocatorType+ "and Locator Value " +strLocatorValue);
-                        throw new NoSuchElementException("unknown locator Type");
+            default:
+                //unable to open URL
+                //log.log_library_error("unable to identify element using LocatorType \"" + strLocatorType+ "\" and Locator Value \"" +strLocatorValue+"\"");
+                //LOGGER.error("unable to identify element using LocatorType " + strLocatorType+ "and Locator Value " +strLocatorValue);
+                throw new NoSuchElementException("unknown locator Type");
 
-        } return element;
+        }
+        return element;
     }
 
 
-    public List<WebElement> getElementList(String str)  {
-        String strLocatorType= (str.split(":",2)[0]).toLowerCase();
-        String strLocatorValue= (str.split(":",2)[1]).toLowerCase();
+    public List<WebElement> getElementList(String str) {
+        String strLocatorType = (str.split(":", 2)[0]).toLowerCase();
+        String strLocatorValue = (str.split(":", 2)[1]).toLowerCase();
 
-        switch(strLocatorType) {
+        switch (strLocatorType) {
 
             case "classname":
                 elementList = driver.findElements(By.className(strLocatorValue));
@@ -176,24 +181,25 @@ public class SeleniumLib {
             case "tagname":
                 elementList = driver.findElements(By.tagName(strLocatorValue));
                 break;
-            default :
+            default:
 
 
-                    //log.log_library_error("unable to identify element List using LocatorType = " + strLocatorType+ "and Locator Value =" + strLocatorValue);
+                //log.log_library_error("unable to identify element List using LocatorType = " + strLocatorType+ "and Locator Value =" + strLocatorValue);
                 //    LOGGER.error("unable to identify element List using LocatorType " + strLocatorType+ "and Locator Valye " +strLocatorValue);
-                    throw new NoSuchElementException("unknown locator Type");
+                throw new NoSuchElementException("unknown locator Type");
 
 
-        } return elementList;
+        }
+        return elementList;
     }
 
 
-    public void clickOnSpecifiedItemInList(List<WebElement> elementList, int x)  {
+    public void clickOnSpecifiedItemInList(List<WebElement> elementList, int x) {
         // may require correct level of exception management
         try {
-            int size= elementList.size();
+            int size = elementList.size();
             //log.log_library_track("size of the list is "+ size);
-            for(int i=0;i<size && i==x;i++) {
+            for (int i = 0; i < size && i == x; i++) {
                 elementList.get(x).click();
             }
 
@@ -204,10 +210,9 @@ public class SeleniumLib {
         }
     }
 
-    public String getElementText(String str){
+    public String getElementText(String str) {
 
         return getElement(str).getText();
-
 
 
     }
