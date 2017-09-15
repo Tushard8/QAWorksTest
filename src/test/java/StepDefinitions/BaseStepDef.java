@@ -32,16 +32,13 @@ public class BaseStepDef {
         localDriver = new FirefoxDriver();
         localDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-
     }
-
 
     public void terminateDriver() throws Exception {
         localDriver.quit();
         localDriver = null;
 
     }
-
 
     public void initalize(WebDriver driver) {
 
@@ -51,6 +48,5 @@ public class BaseStepDef {
         summaryPage = new SummaryPage(driver);
 
     }
-
 
 }
